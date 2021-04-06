@@ -1,4 +1,4 @@
-package br.com.Dev2Me;
+package br.com.dev2me;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

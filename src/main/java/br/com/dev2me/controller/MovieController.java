@@ -1,6 +1,7 @@
 package br.com.dev2me.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -27,24 +28,26 @@ public class MovieController {
 	public List<Movie> getAll(){
 		return movieRepository.findAll();
 	}
+	
+	//ResponseEntity tive que usar Optional
 	@GetMapping("/movies/{id}")
-	public ResponseEntity<Movie> getById(@PathVariable(value = "id")Long movieId){
-		return movieRepository.findById(movieId)movieId;
+	public Optional<Movie> getById(@PathVariable(value = "id") Long movieId){
+		return movieRepository.findById(movieId);
 	}
 	
 	@PostMapping("/movies")
 	public Movie create(@RequestBody Movie movie) {
 		return movieRepository.save(movie);
 	}
-	
+	//ResponseEntity tive que só Movie
 	@PutMapping("/movies/{id}")
-	public ResponseEntity<Movie> update(@PathVariable(value = "id") Long movieId, @RequestBody Movie movieDetails){
+	public Movie update(@PathVariable(value = "id") Long movieId, @RequestBody Movie movieDetails){
 		return movieRepository.save(movieDetails);
 	}
 	
 	@DeleteMapping("/movies/{id}")
 	public void deleteUser(@PathVariable(value = "id")Long MovieId) throws Exception{
-		movieRepository.delete(movieId)
+		movieRepository.deleteById(MovieId);
 	} 
 	
 
